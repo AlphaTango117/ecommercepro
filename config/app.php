@@ -182,6 +182,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPdf\ServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -213,6 +214,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'PDF'=>Barryvdh\DomPdf\Facade::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        
     ])->toArray(),
 
 ];

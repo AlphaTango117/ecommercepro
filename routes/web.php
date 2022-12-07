@@ -16,7 +16,7 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/',[HomeController::class,'index']);
-
+Route::get('/header',[HomeController::class,'count_cart']);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

@@ -24,6 +24,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    </head>
    <body>
+      @include('sweetalert::alert')
       <div class="hero_area">
          <!-- header section strats -->
          @include('home.header')
@@ -66,8 +67,8 @@
 
             <b>{{$comment->name}}</b>
             <p>{{$comment->comment}}</p>
-
-            <a href="javasrcipt::void(0);" onclick="reply(this)" data-Commentid="{{$comment->id}}">Reply</a>
+            <a href="#"  data-commentid="{{$comment->id}}" onclick="reply(this);return false;">reply</a>
+            <!--<a href="javasrcipt::void(0);" onclick="reply(this)" data-Commentid="{{$comment->id}}">Reply</a>-->
 
             @foreach($reply as $rep)
             
@@ -110,7 +111,8 @@
       <script type="text/javascript">
          function reply(caller)
          {
-            document.getElementbyId('commentId').value=$(caller).attr('data-Commentid');
+
+            document.getElementById('commentId').value=$(caller).attr('data-Commentid');
             $('.replyDiv').insertAfter($(caller));
             $('.replyDiv').show();
          }

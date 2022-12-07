@@ -21,7 +21,11 @@
                            <a class="nav-link" href="">Contact</a>
                         </li>     
                         <li class="nav-item">
-                           <a class="nav-link" href="{{url('show_cart')}}">Cart</a>
+                           <a class="nav-link" href="{{url('show_cart')}}">Cart <?php 
+                           $cartValue= new App\Http\Controllers\HomeController();
+                           $value= $cartValue->count_cart();
+                           echo "(".$value.")";
+                            ?></a>
                         </li>  
                         <li class="nav-item">
                            <a class="nav-link" href="{{url('show_order')}}">Order</a>

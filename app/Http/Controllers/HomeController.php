@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 use App\Models\User;
 use App\Models\Product;
@@ -17,11 +18,14 @@ use Stripe;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+
         $comment= comment::orderby('id','desc')->get();
         $reply=reply::all();
         $product= product::paginate(6);
         return view('home.userpage', compact('product','comment','reply'));
+        
     }
 
     public function redirect(){
@@ -54,7 +58,8 @@ class HomeController extends Controller
         }
     }
 
-    public function product_details($id){
+    public function product_details($id)
+    {
             $product= product::find($id);
 
         return view('home.product_details', compact('product'));
@@ -117,6 +122,7 @@ class HomeController extends Controller
                 $cart->quantity= $req->quantity;
 
                 $cart->save();
+                Alert::success('Product added successfully','We have added product into the cart');
                  return redirect()->back();   
             }
 
@@ -317,5 +323,17 @@ class HomeController extends Controller
         return view('home.all_product',compact('product','comment','reply'));
     }
 
-    
+    public function count_cart()
+    { 
+        
+            $id= Auth::user()->id;
+
+            $total_cart= cart::where('user_id','=', $id)->get()->count();
+
+           // return view('home.header',compact('total_cart'));
+            return $total_cart;
+          
+    }
+
+
 }
